@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Taberna El Rinconcillo - Terque (Almería)</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+		
+		<!-- Modal QR para mostrar la carta -->
+		<div id="qrModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-overlay">
+			<div class="bg-white rounded-3xl p-8 max-w-lg w-full mx-4 relative transform modal-content shadow-2xl">
+				<button 
+					id="closeQrModal" 
+					class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 text-3xl font-light transition-colors duration-200 hover:scale-110"
+				>
+					×
+				</button>
+				<div class="text-center space-y-6">
+					<!-- Header con icono -->
+					<div class="space-y-3">
+						<div class="w-16 h-16 bg-[#FF8833] rounded-full flex items-center justify-center mx-auto">
+							<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<h3 class="text-3xl font-bold text-gray-800">¡Nuestra Carta!</h3>
+						<p class="text-gray-600 text-lg">
+							Escanea el código QR para descubrir nuestros deliciosos platos
+						</p>
+					</div>
+					
+					<!-- QR Code con efecto especial -->
+					<div class="relative">
+						<div class="bg-white p-8 rounded-2xl shadow-lg border-4 border-[#FF8833]/20 mx-auto w-fit">
+							<img 
+								src="/qr-code.png" 
+								alt="QR Code para ver la carta" 
+								class="w-56 h-56 object-contain"
+							/>
+						</div>
+						<!-- Efecto de pulso -->
+						<div class="absolute inset-0 bg-[#FF8833]/10 rounded-2xl animate-ping"></div>
+					</div>
+					
+					<!-- Instrucciones mejoradas -->
+					<div class="bg-gray-50 rounded-xl p-4 space-y-2">
+						<div class="flex items-center justify-center space-x-2 text-[#FF8833]">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+							</svg>
+							<span class="font-semibold">Instrucciones</span>
+						</div>
+						<p class="text-sm text-gray-600">
+							1. Abre la cámara de tu móvil<br>
+							2. Apunta al código QR<br>
+							3. ¡Disfruta explorando nuestra carta!
+						</p>
+					</div>
+					
+					<!-- Botones mejorados -->
+					<div class="flex flex-col sm:flex-row gap-3 justify-center">
+						<a 
+							href="/qr-code.png" 
+							target="_blank" 
+							class="bg-[#FF8833] text-white px-8 py-4 rounded-xl hover:bg-[#ff7711] transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl"
+						>
+							📱 Abrir QR
+						</a>
+						<button 
+							onclick="navigator.share && navigator.share({title: 'Carta Taberna El Rinconcillo', url: window.location.href})"
+							class="bg-gray-100 text-gray-700 px-8 py-4 rounded-xl hover:bg-gray-200 transition-all duration-300 font-semibold transform hover:scale-105"
+						>
+							📤 Compartir
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #F8DECD;
+		font-family: 'Inter', sans-serif;
+	}
+	
+	/* Animaciones del modal */
+	.modal-overlay {
+		animation: fadeIn 0.3s ease-out;
+	}
+	
+	.modal-content {
+		animation: slideIn 0.4s ease-out;
+	}
+	
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	
+	@keyframes slideIn {
+		from {
+			opacity: 0;
+			transform: translateY(-50px) scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+	
+	/* Mejoras generales */
+	* {
+		scroll-behavior: smooth;
+	}
+	
+	/* Efectos hover mejorados */
+	.hover-lift {
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+	
+	.hover-lift:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+	}
+</style>

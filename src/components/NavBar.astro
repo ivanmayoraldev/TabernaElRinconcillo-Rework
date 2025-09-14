@@ -1,0 +1,24 @@
+---
+import OpinionRotator from "./OpinionRotator.jsx";
+import Schedule from "./Schedule.jsx";
+---
+<div class="w-full max-w-7xl mx-auto font-inter px-4 sm:px-6 lg:px-8">
+  <div class="text-center py-4 sm:py-6 lg:py-8">
+    <a href="/">
+      <img
+      src="/Taberna-el-rinconcillo.png"
+      alt="Taberna El Rinconcillo logo"
+      class="mx-auto w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[900px] h-auto hover-lift transition-all duration-300"
+      style="image-rendering: crisp-edges;"
+    />
+    
+  </div>
+  <div class="flex flex-col lg:flex-row justify-center items-center gap-4 sm:gap-6 lg:gap-8 xl:gap-12">
+    <div class="w-full max-w-[420px] lg:w-auto">
+      <Schedule client:load />
+    </div>
+    <div class="w-full max-w-[420px] lg:w-auto">
+      <OpinionRotator client:load />
+    </div>
+  </div>
+</div>
